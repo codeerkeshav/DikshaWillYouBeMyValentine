@@ -1,117 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Wanna be My Valentine??</title>
-    <link rel="stylesheet" href="style2.css" />
-  </head>
-  <body>
-    <div class="flex f-aps">
-      <p>
-        Made with ❤️ by
-        <a rel="noopener" href="https://www.instagram.com/ishaaaannnnkkk/" target="_blank">Your Adrak</a>
-        </p>
-      </p>
-      </a>
-    </div>
-    <h1 class="headerText" id="wedate">Will You Be My Valentine, Diksha? 🥺</h1>
-    <img class="image" src="https://github.com/NikhilMarko03/resources/blob/main/happy1.gif?raw=true" alt="heyy" id="mainImg" />
-    <div class="flex" id="btns">
-      <button
-        class="button"
-        id="yes"
-        onmouseenter="happy()"
-        onmouseleave="normal()"
-        onclick="yes()"
-      >
-        Yes 🥰
-      </button>
-      <button
-        class="button"
-        id="no"
-        onmouseenter="angry()"
-        onmouseleave="normal()"
-        onclick="no()"
-      >
-        No 😭
-      </button>
-    </div>
-    <div class="absImages" id="absImg">
-      <img class="image1" src="https://github.com/NikhilMarko03/resources/blob/main/heart.gif?raw=true" alt="heyy" />
-      <img class="image1" src="https://github.com/NikhilMarko03/resources/blob/main/heart.gif?raw=true" alt="heyy" />
-      <img class="image1" src="https://github.com/NikhilMarko03/resources/blob/main/heart.gif?raw=true" alt="heyy" />
-      <img class="image1" src="https://github.com/NikhilMarko03/resources/blob/main/heart.gif?raw=true" alt="heyy" />
-      <img class="image1" src="https://github.com/NikhilMarko03/resources/blob/main/heart.gif?raw=true" alt="heyy" />
-      <img class="image1" src="https://github.com/NikhilMarko03/resources/blob/main/heart.gif?raw=true" alt="heyy" />
-      <img class="image1" src="https://github.com/NikhilMarko03/resources/blob/main/heart.gif?raw=true" alt="heyy" />
-      <img class="image1" src="https://github.com/NikhilMarko03/resources/blob/main/heart.gif?raw=true" alt="heyy" />
-      <img class="image1" src="https://github.com/NikhilMarko03/resources/blob/main/heart.gif?raw=true" alt="heyy" />
-      <img class="image1" src="https://github.com/NikhilMarko03/resources/blob/main/heart.gif?raw=true" alt="heyy" />
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Someone Special 💖</title>
 
-      <!-- <img class="image2" src="./resources/sad.gif" alt="heyy" /> -->
-    </div>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 
-    <div class="model" id="model2">
-      <audio id="happyMusic" style="opacity: 0" controls loop>
-        <source src="./resources/happy.mp3" type="audio/mp3" />
-        Your browser does not support the audio element.
-      </audio>
-      <div class="model-content">
-        <p class="modelText" id="modelText2">I Love you 😘😘</p>
-        <img
-          class="modelImg"
-          id="modelImg2"
-          src="https://takelessons.com/blog/wp-content/uploads/2013/07/happy-cat.gif"
-          alt="heyy"
-        />
-        <button
-          class="button"
-          id="yes"
-          onmouseenter="happy()"
-          onmouseleave="normal()"
-          onclick="yes()"
-        >
-          Love You Too 🥰
-        </button>
-      </div>
-    </div>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-    <div id="model" class="model">
-      <audio id="sadMusic" style="opacity: 0" controls loop>
-        <source src="./resources/sad.mp3" type="audio/mp3" />
-        Your browser does not support the audio element.
-      </audio>
-      <div class="model-content">
-        <p class="modelText" id="modelText">Please</p>
-        <img
-          class="modelImg"
-          id="modelImg"
-          src="https://media1.tenor.com/images/9413ffc5a11722a3cc456a88810750bd/tenor.gif?itemid=14193216"
-          alt="heyy"
-        />
-        <div class="flex">
-          <button
-            class="button"
-            id="yes"
-            onmouseenter="happy()"
-            onmouseleave="normal()"
-            onclick="yes()"
-          >
-            Yes 🥰
-          </button>
-          <button
-            class="button"
-            id="no"
-            onmouseenter="angry()"
-            onmouseleave="normal()"
-            onclick="no()"
-          >
-            No 😭
-          </button>
-        </div>
-      </div>
+body{
+    height:100vh;
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+    font-family:'Poppins',sans-serif;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+}
+
+/* Container */
+.container{
+    opacity:0;
+    transform:translateY(30px);
+    animation:fadeIn 2s ease forwards;
+}
+
+@keyframes fadeIn{
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* Romantic Title */
+h1{
+    font-family:'Dancing Script',cursive;
+    font-size:clamp(30px,7vw,50px);
+    margin-bottom:20px;
+}
+
+/* Typewriter Text */
+#message{
+    font-size:clamp(16px,4vw,20px);
+    min-height:60px;
+    margin-bottom:30px;
+}
+
+/* Buttons */
+.buttons{
+    display:flex;
+    gap:20px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+button{
+    padding:14px 30px;
+    font-size:16px;
+    border:none;
+    border-radius:50px;
+    cursor:pointer;
+    transition:all 0.3s ease;
+}
+
+/* YES button */
+#yesBtn{
+    background:#e63946;
+    color:white;
+    animation:heartbeat 2s infinite;
+}
+
+@keyframes heartbeat{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.1);}
+    100%{transform:scale(1);}
+}
+
+#yesBtn:hover{
+    background:#c9182b;
+}
+
+/* NO button */
+#noBtn{
+    background:white;
+    color:#e63946;
+}
+
+#noBtn:hover{
+    opacity:0.8;
+}
+
+/* Floating hearts */
+.heart{
+    position:absolute;
+    bottom:-20px;
+    font-size:20px;
+    animation:floatUp linear infinite;
+    opacity:0.8;
+}
+
+@keyframes floatUp{
+    from{transform:translateY(0); opacity:1;}
+    to{transform:translateY(-110vh); opacity:0;}
+}
+
+/* Celebration Screen */
+#celebration{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(135deg,#ff758c,#ff7eb3);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    opacity:0;
+    pointer-events:none;
+    transition:1s ease;
+}
+
+#celebration.show{
+    opacity:1;
+    pointer-events:auto;
+}
+
+#celebration h2{
+    font-family:'Dancing Script',cursive;
+    font-size:clamp(35px,8vw,60px);
+    animation:pop 1s ease forwards;
+}
+
+@keyframes pop{
+    from{transform:scale(0);}
+    to{transform:scale(1);}
+}
+
+/* Mobile */
+@media(max-width:480px){
+    .buttons{
+        flex-direction:column;
+    }
+    button{
+        width:100%;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Hey Beautiful 💕</h1>
+    <div id="message"></div>
+
+    <div class="buttons">
+        <button id="yesBtn">Yes ❤️</button>
+        <button id="noBtn">No 😢</button>
     </div>
-  </body>
-  <script src="main2.js"></script>
+</div>
+
+<div id="celebration">
+    <h2>She Said YES! 💍💖</h2>
+</div>
+
+<script>
+const messageText = "From the moment I met you, my world became brighter... Will you make it magical forever?";
+const messageEl = document.getElementById("message");
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const celebration = document.getElementById("celebration");
+
+let i = 0;
+
+/* Typewriter Effect */
+function typeWriter(){
+    if(i < messageText.length){
+        messageEl.innerHTML += messageText.charAt(i);
+        i++;
+        setTimeout(typeWriter,40);
+    }
+}
+typeWriter();
+
+/* No Button runs away */
+noBtn.addEventListener("mouseover",()=>{
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+    noBtn.style.position="absolute";
+    noBtn.style.left=x+"px";
+    noBtn.style.top=y+"px";
+});
+
+/* Yes Button Celebration */
+yesBtn.addEventListener("click",()=>{
+    celebration.classList.add("show");
+});
+
+/* Floating hearts */
+function createHeart(){
+    const heart=document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML="💖";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.animationDuration=(4+Math.random()*3)+"s";
+    document.body.appendChild(heart);
+
+    setTimeout(()=>heart.remove(),7000);
+}
+setInterval(createHeart,500);
+</script>
+
+</body>
 </html>
