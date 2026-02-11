@@ -35,7 +35,7 @@
 
 <h2>Click "No" to make "Yes" bigger!</h2>
 
-<button id="yesBtn">Yes</button>
+<button id="yesBtn" onclick="openImage()">Yes</button>
 <button id="noBtn">No</button>
 
 <script>
@@ -48,9 +48,15 @@
         let currentPadding = parseFloat(window.getComputedStyle(yesBtn).padding);
 
         // Increase size by 2px each click
-        yesBtn.style.fontSize = (currentSize + 2) + 'px';
-        yesBtn.style.padding = (currentPadding + 2) + 'px ' + (currentPadding + 6) + 'px';
+        yesBtn.style.fontSize = (currentSize + 15) + 'px';
+        yesBtn.style.padding = (currentPadding + 15) + 'px ' + (currentPadding + 6) + 'px';
     });
+    
+    function openImage() {
+    // Replace with your image URL
+    const imageUrl = "https://github.com/codeerkeshav/dgbemyvalentine.guthub.io/blob/main/invite.jpg";
+    window.open(imageUrl, "_blank");
+  }
 </script>
 
 </body>
