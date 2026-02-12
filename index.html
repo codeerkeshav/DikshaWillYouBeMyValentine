@@ -213,7 +213,7 @@ button{
 </head>
 <body>
 
-<!-- Background Music -->
+<!-- Background Music (plays continuously) -->
 <audio id="bgMusic" loop>
     <source src="Perfect.mp3" type="audio/mpeg">
 </audio>
@@ -263,8 +263,8 @@ const noPrompts = [
 ];
 let clickCount = 0;
 
-/* Auto-play audio on page load */
-window.addEventListener("load", () => {
+/* Auto play audio on page load */
+window.addEventListener('load', () => {
     audio.play().catch(err => console.log("Autoplay blocked:", err));
 });
 
@@ -292,7 +292,6 @@ noBtn.addEventListener("click", () => {
 
 /* Yes Button - Show scroll with heart shower */
 yesBtn.addEventListener("click", () => {
-    if(!audio.paused){ audio.pause(); }
 
     // Hide main container
     document.querySelector(".container").style.display = "none";
@@ -300,7 +299,7 @@ yesBtn.addEventListener("click", () => {
     // Heart shower
     createHeartShower(100);
 
-    // Show scroll after a delay (slow reveal)
+    // Show scroll after a short delay (slow reveal)
     setTimeout(() => {
         scrollReveal.style.display = "flex";
         setTimeout(() => {
@@ -317,7 +316,6 @@ closeScroll.addEventListener("click", () => {
     setTimeout(() => {
         scrollReveal.style.display = "none";
         document.querySelector(".container").style.display = "flex";
-        document.body.style.overflow = "hidden";
     }, 500);
 });
 
