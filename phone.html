@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notification Bell</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    /* Notification container */
+    .notification {
+        position: relative;
+        cursor: pointer;
+    }
+
+    /* Bell icon */
+    .notification .bell {
+        font-size: 50px;
+        color: #333;
+        transition: transform 0.3s ease;
+    }
+
+    /* Shake animation */
+    .notification.shake .bell {
+        animation: shake 0.5s;
+    }
+
+    @keyframes shake {
+        0% { transform: rotate(0deg); }
+        25% { transform: rotate(15deg); }
+        50% { transform: rotate(-15deg); }
+        75% { transform: rotate(15deg); }
+        100% { transform: rotate(0deg); }
+    }
+
+    /* Red badge */
+    .badge {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: red;
+        color: white;
+        font-size: 14px;
+        padding: 3px 6px;
+        border-radius: 50%;
+        animation: pulse 1s infinite;
+    }
+
+    /* Pulse animation for badge */
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.2); }
+        100% { transform: scale(1); }
+    }
+</style>
+</head>
+<body>
+
+<!-- Notification Bell -->
+<div class="notification" id="notifyBell">
+    <span class="bell">🔔</span>
+    <span class="badge" id="badgeCount">3</span>
+</div>
+
+<script>
+    const bell = document.getElementById("notifyBell");
+
+    // Add shake animation on load
+    window.onload = () => {
+        bell.classList.add("shake");
+        setTimeout(() => bell.classList.remove("shake"), 600);
+    };
+
+    // On click, redirect to another page
+    bell.addEventListener("click", () => {
+        // Optional: play shake before redirect
+        bell.classList.add("shake");
+        setTimeout(() => {
+            window.location.href = "notifications.html"; // Redirect page
+        }, 500);
+    });
+</script>
+
+</body>
+</html>
