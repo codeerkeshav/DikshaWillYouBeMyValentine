@@ -160,7 +160,7 @@ button{
     display:flex;
     justify-content:center;
     align-items:flex-start;
-    padding-top:60px;
+    padding:5vh 2vw;
     transform:translateY(-100%);
     transition:transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
     z-index:999;
@@ -176,46 +176,51 @@ button{
     display:flex;
     flex-direction:column;
     align-items:center;
+    width:100%;
+    max-width:600px; /* max width for larger screens */
     animation:dropIn 1.5s ease forwards;
 }
 
 /* Wooden Rollers */
 .scroll-top,
 .scroll-bottom{
-    width:95%;
-    max-width:520px;
-    height:25px;
+    width:100%;
+    height:4vh; /* responsive height */
     background:linear-gradient(to right,#8b5a2b,#a0522d,#8b5a2b);
-    border-radius:20px;
+    border-radius:2vh;
     box-shadow:0 5px 15px rgba(0,0,0,0.4);
+    flex-shrink:0;
 }
 
 /* Scroll Paper */
 .scroll-paper{
-    background:
-        linear-gradient(to bottom,#fdf6e3,#f7e7ce);
-    width:90%;
-    max-width:500px;
-    padding:25px;
+    background:linear-gradient(to bottom,#fdf6e3,#f7e7ce);
+    width:100%;
+    padding:3vh 3vw;
     box-shadow:
         0 20px 40px rgba(0,0,0,0.3),
         inset 0 0 30px rgba(0,0,0,0.1);
-    border-left:5px solid rgba(0,0,0,0.05);
-    border-right:5px solid rgba(0,0,0,0.05);
+    border-left:0.5vw solid rgba(0,0,0,0.05);
+    border-right:0.5vw solid rgba(0,0,0,0.05);
     animation:unroll 1.5s ease forwards;
     transform-origin:top;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
 .scroll-paper img{
     width:100%;
-    border-radius:10px;
+    height:auto;
+    max-height:80vh; /* ensures it doesn’t overflow viewport */
+    border-radius:1vw;
     box-shadow:0 10px 20px rgba(0,0,0,0.2);
 }
 
 /* Drop animation */
 @keyframes dropIn{
     from{
-        transform:translateY(-50px);
+        transform:translateY(-5vh);
         opacity:0;
     }
     to{
@@ -233,6 +238,22 @@ button{
     100%{
         transform:scaleY(1);
         opacity:1;
+    }
+}
+
+/* Mobile adjustments */
+@media(max-width:480px){
+    #scrollReveal{
+        padding:3vh 3vw;
+    }
+
+    .scroll-top,
+    .scroll-bottom{
+        height:3vh;
+    }
+
+    .scroll-paper{
+        padding:4vw 4vw;
     }
 }
 
@@ -275,7 +296,6 @@ button{
         <div class="scroll-bottom"></div>
     </div>
 </div>
-
 
 <script>
 const messageEl = document.getElementById("message");
