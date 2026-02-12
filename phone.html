@@ -3,89 +3,89 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Notification Bell</title>
+<title>Phone Notification</title>
+
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        background: #f4f4f4;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f2f2f2;
+    font-family: Arial, sans-serif;
+}
 
-    /* Notification container */
-    .notification {
-        position: relative;
-        cursor: pointer;
-    }
+/* Phone */
+.phone {
+    width: 180px;
+    height: 360px;
+    background: #222;
+    border-radius: 30px;
+    position: relative;
+    animation: vibrate 0.2s infinite;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
 
-    /* Bell icon */
-    .notification .bell {
-        font-size: 50px;
-        color: #333;
-        transition: transform 0.3s ease;
-    }
+/* Screen */
+.screen {
+    width: 90%;
+    height: 85%;
+    background: white;
+    margin: 20px auto;
+    border-radius: 20px;
+    position: relative;
+}
 
-    /* Shake animation */
-    .notification.shake .bell {
-        animation: shake 0.5s;
-    }
+/* Notification icon */
+.notification {
+    width: 50px;
+    height: 50px;
+    background: red;
+    border-radius: 50%;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: white;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    animation: pop 1s ease forwards;
+}
 
-    @keyframes shake {
-        0% { transform: rotate(0deg); }
-        25% { transform: rotate(15deg); }
-        50% { transform: rotate(-15deg); }
-        75% { transform: rotate(15deg); }
-        100% { transform: rotate(0deg); }
-    }
+/* Vibrate animation */
+@keyframes vibrate {
+    0% { transform: translate(0); }
+    25% { transform: translate(-3px, 3px); }
+    50% { transform: translate(3px, -3px); }
+    75% { transform: translate(-3px, -3px); }
+    100% { transform: translate(3px, 3px); }
+}
 
-    /* Red badge */
-    .badge {
-        position: absolute;
-        top: 0;
-        right: 0;
-        background: red;
-        color: white;
-        font-size: 14px;
-        padding: 3px 6px;
-        border-radius: 50%;
-        animation: pulse 1s infinite;
-    }
+/* Pop animation */
+@keyframes pop {
+    0% { transform: scale(0); }
+    80% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
 
-    /* Pulse animation for badge */
-    @keyframes pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.2); }
-        100% { transform: scale(1); }
-    }
 </style>
 </head>
+
 <body>
 
-<!-- Notification Bell -->
-<div class="notification" id="notifyBell">
-    <span class="bell">🔔</span>
-    <span class="badge" id="badgeCount">3</span>
+<div class="phone">
+    <div class="screen">
+        <div class="notification" onclick="goToPage()">🔔</div>
+    </div>
 </div>
 
 <script>
-    const bell = document.getElementById("notifyBell");
-
-    // Add shake animation on load
-    window.onload = () => {
-        bell.classList.add("shake");
-        setTimeout(() => bell.classList.remove("shake"), 600);
-    };
-
-    // On click, redirect to another page
-    bell.addEventListener("click", () => {
-        // Optional: play shake before redirect
-        bell.classList.add("shake");
-        setTimeout(() => {
-            window.location.href = "notifications.html"; // Redirect page
-        }, 500);
-    });
+function goToPage() {
+    window.location.href = "index.html";
+}
 </script>
 
 </body>
