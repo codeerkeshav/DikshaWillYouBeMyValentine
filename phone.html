@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Phone Heart Notification</title>
+<title>Clickable Heart Notification</title>
 
 <style>
 body {
@@ -31,7 +31,6 @@ body {
     background: transparent;
 }
 
-/* Top speaker */
 .phone::before {
     content: "";
     position: absolute;
@@ -44,7 +43,6 @@ body {
     border-radius: 3px;
 }
 
-/* Bottom button */
 .phone::after {
     content: "";
     position: absolute;
@@ -57,7 +55,7 @@ body {
     border-radius: 3px;
 }
 
-/* Notification bubble */
+/* Clickable Bubble (now an anchor tag) */
 .bubble {
     position: absolute;
     top: 30px;
@@ -70,7 +68,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-decoration: none;
     animation: pop 1s ease forwards;
+    transition: transform 0.2s ease;
+}
+
+/* Hover effect */
+.bubble:hover {
+    transform: scale(1.1);
 }
 
 /* Bubble tail */
@@ -93,7 +98,7 @@ body {
     color: #e255a1;
 }
 
-/* Vibrate animation */
+/* Vibrate */
 @keyframes vibrate {
     0% { transform: translate(0); }
     25% { transform: translate(-2px, 2px); }
@@ -115,9 +120,11 @@ body {
 
 <div class="container">
     <div class="phone"></div>
-    <div class="bubble">
+
+    <!-- Clickable bubble -->
+    <a href="index.html" class="bubble">
         <div class="heart">❤</div>
-    </div>
+    </a>
 </div>
 
 </body>
