@@ -151,6 +151,57 @@ button{
         width:100%;
     }
 }
+
+/* Scroll Reveal Container */
+#scrollReveal{
+    position:fixed;
+    inset:0;
+    background:linear-gradient(135deg,#fbc2eb,#a6c1ee);
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    padding-top:50px;
+    transform:translateY(-100%);
+    transition:transform 1.5s ease-in-out;
+    z-index:999;
+    overflow:auto;
+}
+
+/* Show scroll */
+#scrollReveal.show{
+    transform:translateY(0);
+}
+
+/* Scroll paper look */
+.scroll-paper{
+    background:#fffaf0;
+    width:90%;
+    max-width:500px;
+    border-radius:20px;
+    padding:20px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.2);
+    animation:unroll 1.5s ease forwards;
+}
+
+.scroll-paper img{
+    width:100%;
+    border-radius:10px;
+}
+
+/* Unroll animation */
+@keyframes unroll{
+    from{
+        transform:scaleY(0);
+        transform-origin:top;
+        opacity:0;
+    }
+    to{
+        transform:scaleY(1);
+        transform-origin:top;
+        opacity:1;
+    }
+}
+
 </style>
 </head>
 <body>
@@ -178,12 +229,20 @@ button{
     <a href="https://www.instagram.com/ishaaaannnnkkk" target="_blank">Adrak</a>
 </div>
 
+<!-- Scroll Reveal -->
+<div id="scrollReveal">
+    <div class="scroll-paper">
+        <img src="https://codeerkeshav.github.io/DikshaWillYouBeMyValentine/invite.jpg" alt="Our Special Moment">
+    </div>
+</div>
+
 <script>
 const messageEl = document.getElementById("message");
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
 const audio = document.getElementById("bgMusic");
 const audioBtn = document.getElementById("audioControl");
+const scrollReveal = document.getElementById("scrollReveal");
 
 /* Default Opening Message */
 messageEl.innerHTML = "From the moment I met you, my world became brighter... Will you be my valentine and make it magical forever? 🥺";
@@ -225,10 +284,24 @@ noBtn.addEventListener("click", () => {
 });
 
 /* Yes Button opens image */
+
 yesBtn.addEventListener("click", () => {
-    const imageUrl = "https://codeerkeshav.github.io/dgbemyvalentine/invite.jpg";
-    window.open(imageUrl, "_blank");
+
+    // Stop music softly (optional)
+    if(!audio.paused){
+        audio.pause();
+    }
+
+    // Hide main container
+    document.querySelector(".container").style.display = "none";
+
+    // Allow page scrolling
+    document.body.style.overflow = "auto";
+
+    // Show scroll animation
+    scrollReveal.classList.add("show");
 });
+
 
 /* Floating hearts */
 function createHeart(){
