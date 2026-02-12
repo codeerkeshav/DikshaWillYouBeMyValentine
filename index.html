@@ -142,58 +142,29 @@ button{
     to{transform:translateY(-110vh); opacity:0;}
 }
 
-/* Scroll Reveal Container */
+/* Scroll Reveal Modal */
 #scrollReveal{
     position:fixed;
-    inset:0;
-    background:radial-gradient(circle at center,#fbc2eb,#a6c1ee);
-    display:flex;
-    justify-content:center;
-    align-items:flex-start;
-    padding:5vh 2vw;
-    transform:translateY(-100%);
-    transition:transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
-    z-index:999;
-    overflow:auto;
-}
-
-#scrollReveal.show{
-    transform:translateY(0);
-}
-
-/* Scroll Wrapper */
-.scroll-wrapper{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    width:100%;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) scale(0.8);
+    width:90%;
     max-width:600px;
-    animation:dropIn 1.5s ease forwards;
-}
-
-/* Wooden Rollers */
-.scroll-top,
-.scroll-bottom{
-    width:100%;
-    height:4vh;
-    background:linear-gradient(to right,#8b5a2b,#a0522d,#8b5a2b);
-    border-radius:2vh;
-    box-shadow:0 5px 15px rgba(0,0,0,0.4);
-    flex-shrink:0;
+    max-height:80%;
+    background:radial-gradient(circle at center,#fdf6e3,#f7e7ce);
+    box-shadow:0 20px 40px rgba(0,0,0,0.5);
+    border-radius:15px;
+    display:none;
+    flex-direction:column;
+    overflow:auto;
+    z-index:999;
+    opacity:0;
+    transition:transform 1s ease, opacity 1s ease;
 }
 
 /* Scroll Paper */
 .scroll-paper{
-    background:linear-gradient(to bottom,#fdf6e3,#f7e7ce);
-    width:100%;
     padding:3vh 3vw;
-    box-shadow:
-        0 20px 40px rgba(0,0,0,0.3),
-        inset 0 0 30px rgba(0,0,0,0.1);
-    border-left:0.5vw solid rgba(0,0,0,0.05);
-    border-right:0.5vw solid rgba(0,0,0,0.05);
-    animation:unroll 1.5s ease forwards;
-    transform-origin:top;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -202,33 +173,24 @@ button{
 .scroll-paper img{
     width:100%;
     height:auto;
-    max-height:80vh;
+    max-height:70vh;
     border-radius:1vw;
     box-shadow:0 10px 20px rgba(0,0,0,0.2);
 }
 
-/* Drop animation */
-@keyframes dropIn{
-    from{
-        transform:translateY(-5vh);
-        opacity:0;
-    }
-    to{
-        transform:translateY(0);
-        opacity:1;
-    }
-}
-
-/* Unroll animation */
-@keyframes unroll{
-    0%{
-        transform:scaleY(0);
-        opacity:0;
-    }
-    100%{
-        transform:scaleY(1);
-        opacity:1;
-    }
+/* Close button */
+#closeScroll{
+    position:absolute;
+    top:10px;
+    right:15px;
+    background:#e63946;
+    color:white;
+    border:none;
+    padding:8px 12px;
+    border-radius:20px;
+    cursor:pointer;
+    font-size:14px;
+    z-index:1000;
 }
 
 /* Mobile adjustments */
@@ -240,14 +202,11 @@ button{
         width:100%;
     }
     #scrollReveal{
-        padding:3vh 3vw;
-    }
-    .scroll-top,
-    .scroll-bottom{
-        height:3vh;
+        width:95%;
+        max-height:85%;
     }
     .scroll-paper{
-        padding:4vw 4vw;
+        padding:3vw;
     }
 }
 </style>
@@ -277,14 +236,11 @@ button{
     <a href="https://www.instagram.com/ishaaaannnnkkk" target="_blank">Adrak</a>
 </div>
 
-<!-- Aesthetic Scroll Reveal -->
+<!-- Scroll Reveal Modal -->
 <div id="scrollReveal">
-    <div class="scroll-wrapper">
-        <div class="scroll-top"></div>
-        <div class="scroll-paper">
-            <img src="https://codeerkeshav.github.io/DikshaWillYouBeMyValentine/invite.jpg" alt="Our Special Moment">
-        </div>
-        <div class="scroll-bottom"></div>
+    <button id="closeScroll">✖ Close</button>
+    <div class="scroll-paper">
+        <img src="https://codeerkeshav.github.io/DikshaWillYouBeMyValentine/invite.jpg" alt="Our Special Moment">
     </div>
 </div>
 
@@ -295,6 +251,7 @@ const noBtn = document.getElementById("noBtn");
 const audio = document.getElementById("bgMusic");
 const audioBtn = document.getElementById("audioControl");
 const scrollReveal = document.getElementById("scrollReveal");
+const closeScroll = document.getElementById("closeScroll");
 
 /* Prompts for No button */
 const noPrompts = [
@@ -305,6 +262,11 @@ const noPrompts = [
     "Okay, sunflower it is 🌻"
 ];
 let clickCount = 0;
+
+/* Auto-play audio on page load */
+window.addEventListener("load", () => {
+    audio.play().catch(err => console.log("Autoplay blocked:", err));
+});
 
 /* Audio Toggle */
 audioBtn.addEventListener("click", () => {
@@ -328,21 +290,35 @@ noBtn.addEventListener("click", () => {
     }
 });
 
-/* Yes Button - Show scroll */
+/* Yes Button - Show scroll with heart shower */
 yesBtn.addEventListener("click", () => {
-    // Stop music if playing
-    if(!audio.paused){
-        audio.pause();
-    }
+    if(!audio.paused){ audio.pause(); }
 
     // Hide main container
     document.querySelector(".container").style.display = "none";
 
-    // Enable page scroll
-    document.body.style.overflow = "auto";
+    // Heart shower
+    createHeartShower(100);
 
-    // Show scroll reveal
-    scrollReveal.classList.add("show");
+    // Show scroll after a delay (slow reveal)
+    setTimeout(() => {
+        scrollReveal.style.display = "flex";
+        setTimeout(() => {
+            scrollReveal.style.opacity = "1";
+            scrollReveal.style.transform = "translate(-50%, -50%) scale(1)";
+        }, 100);
+    }, 1500);
+});
+
+/* Close scroll */
+closeScroll.addEventListener("click", () => {
+    scrollReveal.style.opacity = "0";
+    scrollReveal.style.transform = "translate(-50%, -50%) scale(0.8)";
+    setTimeout(() => {
+        scrollReveal.style.display = "none";
+        document.querySelector(".container").style.display = "flex";
+        document.body.style.overflow = "hidden";
+    }, 500);
 });
 
 /* Floating hearts */
@@ -351,12 +327,28 @@ function createHeart(){
     heart.classList.add("heart");
     heart.innerHTML = "💖";
     heart.style.left = Math.random()*100 + "vw";
-    heart.style.animationDuration = (4+Math.random()*3) + "s";
+    heart.style.animationDuration = (4+Math.random()*3)+"s";
     document.body.appendChild(heart);
     setTimeout(()=>heart.remove(),7000);
 }
 setInterval(createHeart,500);
-</script>
 
+/* Heart shower for scroll reveal */
+function createHeartShower(count){
+    for(let i=0;i<count;i++){
+        setTimeout(()=>{
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "💖";
+            heart.style.left = Math.random()*100 + "vw";
+            heart.style.top = Math.random()*100 + "vh";
+            heart.style.fontSize = (10+Math.random()*20) + "px";
+            heart.style.animationDuration = (3+Math.random()*2)+"s";
+            document.body.appendChild(heart);
+            setTimeout(()=>heart.remove(),4000);
+        }, i*50);
+    }
+}
+</script>
 </body>
 </html>
